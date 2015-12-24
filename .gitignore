@@ -1,2 +1,6 @@
 bin2h.xcodeproj/project.xcworkspace
 bin2h.xcodeproj/xcuserdata
+x64/
+Release/
+Debug/
+*.sdf
