@@ -9,6 +9,11 @@ typedef enum
     NAME = 3
 } ARG_TYPE;
 
+void print_help()
+{
+    printf("Usage: bin2c -i <input> -o output -d -z\n");
+}
+
 int main(int argc, char *argv[])
 {
     int result = 1;
@@ -24,6 +29,13 @@ int main(int argc, char *argv[])
     unsigned char byte;
     int zero_terminate = 0;
     int decimal = 0;
+    
+    if (argc <= 1 ||
+        (argc == 2 && strcmp(argv[1], "-h") == 0))
+    {
+        print_help();
+        return 0;
+    }
     
     for (arg = 1; arg < argc; ++arg)
     {
@@ -52,6 +64,11 @@ int main(int argc, char *argv[])
                     else if (strcmp(argv[arg], "-d") == 0)
                     {
                         decimal = 1;
+                    }
+                    else
+                    {
+                        printf("Invalid argument: %s\n", argv[arg]);
+                        return 1;
                     }
                     
                     break;
