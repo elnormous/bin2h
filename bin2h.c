@@ -68,18 +68,20 @@ int main(int argc, char *argv[])
                 }
             }
             
-            current_arg = NONE;
+            arg_type = NONE;
         }
     }
     
-    if (input == 0)
+    if (!input)
     {
         printf("No input file given\n");
+        goto exit;
     }
     
-    if (input == 1)
+    if (!output)
     {
         printf("No output file given\n");
+        goto exit;
     }
     
     input_f = fopen(input, "rb");
