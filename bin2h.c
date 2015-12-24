@@ -26,15 +26,15 @@ int main(int argc, char *argv[])
     
     for (arg = 1; arg < argc; ++arg)
     {
-        if (strcmp(argv[arg], "-i"))
+        if (strcmp(argv[arg], "-i") == 0)
         {
             arg_type = INPUT;
         }
-        else if (strcmp(argv[arg], "-o"))
+        else if (strcmp(argv[arg], "-o") == 0)
         {
             arg_type = OUTPUT;
         }
-        else if (strcmp(argv[arg], "-n"))
+        else if (strcmp(argv[arg], "-n") == 0)
         {
             arg_type = NAME;
         }
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
             {
                 case NONE:
                 {
-                    if (strcmp(argv[arg], "-z"))
+                    if (strcmp(argv[arg], "-z") == 0)
                     {
                         zero_terminate = 1;
                     }
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
         goto exit;
     }
     
-    output_f = fopen(output, "rb");
+    output_f = fopen(output, "w");
     
     if (!output_f)
     {
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     
     while (fread(&byte, 1, 1, input_f))
     {
-        if (i == 0)
+        if (i != 0)
         {
             fprintf(output_f, ", ");
         }
