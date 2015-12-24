@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     
     unsigned char byte;
     int zero_terminate = 0;
+    int decimal = 0;
     
     for (arg = 1; arg < argc; ++arg)
     {
@@ -47,6 +48,10 @@ int main(int argc, char *argv[])
                     if (strcmp(argv[arg], "-z") == 0)
                     {
                         zero_terminate = 1;
+                    }
+                    else if (strcmp(argv[arg], "-d") == 0)
+                    {
+                        decimal = 1;
                     }
                     
                     break;
@@ -109,7 +114,14 @@ int main(int argc, char *argv[])
             fprintf(output_f, ", ");
         }
         
-        fprintf(output_f, "0x%02X", byte);
+        if (decimal)
+        {
+            fprintf(output_f, "%d", byte);
+        }
+        else
+        {
+            fprintf(output_f, "0x%02X", byte);
+        }
         
         ++i;
     }
@@ -121,7 +133,14 @@ int main(int argc, char *argv[])
             fprintf(output_f, ", ");
         }
         
-        fprintf(output_f, "0x00");
+        if (decimal)
+        {
+            fprintf(output_f, "%d", byte);
+        }
+        else
+        {
+            fprintf(output_f, "0x00");
+        }
     }
     
     fprintf(output_f, " };");
