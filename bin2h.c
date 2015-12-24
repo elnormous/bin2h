@@ -130,23 +130,26 @@ int main(int argc, char *argv[])
     
     fprintf(output_f, "unsigned char %s[] = { ", name);
     
-    while (fread(&byte, 1, 1, input_f))
+    while (!feof(input_f))
     {
-        if (i != 0)
+        while (fread(&byte, 1, 1, input_f))
         {
-            fprintf(output_f, ", ");
+            if (i != 0)
+            {
+                fprintf(output_f, ", ");
+            }
+            
+            if (decimal)
+            {
+                fprintf(output_f, "%d", byte);
+            }
+            else
+            {
+                fprintf(output_f, "0x%02X", byte);
+            }
+            
+            ++i;
         }
-        
-        if (decimal)
-        {
-            fprintf(output_f, "%d", byte);
-        }
-        else
-        {
-            fprintf(output_f, "0x%02X", byte);
-        }
-        
-        ++i;
     }
     
     if (zero_terminate)
@@ -158,7 +161,7 @@ int main(int argc, char *argv[])
         
         if (decimal)
         {
-            fprintf(output_f, "%d", byte);
+            fprintf(output_f, "0");
         }
         else
         {
