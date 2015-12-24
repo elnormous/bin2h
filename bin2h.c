@@ -9,9 +9,15 @@ typedef enum
     NAME = 3
 } ARG_TYPE;
 
-void print_help()
+void print_help(const char* name)
 {
-    printf("Usage: bin2c -i <input> -o output -d -z\n");
+    printf("OVERVIEW: Converts binary file to C header\n\n");
+    printf("USAGE: %s -i <input> -o output -d -z\n\n", name);
+    printf("OPTIONS:\n");
+    printf("	-i <input>		Specify input file\n");
+    printf("	-o <output>		Specify output file\n");
+    printf("	-z				Add zero to the end of the array\n");
+    printf("	-d				Print decimal literals instead of binary\n");
 }
 
 int main(int argc, char *argv[])
@@ -33,7 +39,7 @@ int main(int argc, char *argv[])
     if (argc <= 1 ||
         (argc == 2 && strcmp(argv[1], "-h") == 0))
     {
-        print_help();
+        print_help((argc > 0) ? argv[0] : "bin2c");
         return 0;
     }
     
