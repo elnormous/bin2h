@@ -14,11 +14,12 @@ void print_help(const char* name)
     printf("OVERVIEW: Converts binary file to C header\n\n");
     printf("USAGE: %s -i <input> -o output -d -z\n\n", name);
     printf("OPTIONS:\n");
+    printf("	-d				Print decimal literals instead of binary\n");
+    printf("	-e				Output variable that golds a pointer to the last element of the data\n");
     printf("	-i <input>		Specify input file\n");
     printf("	-o <output>		Specify output file\n");
-    printf("	-z				Add zero to the end of the array\n");
-    printf("	-d				Print decimal literals instead of binary\n");
     printf("	-s				Output variable for data size\n");
+    printf("	-z				Add zero to the end of the array\n");
 }
 
 int main(int argc, char *argv[])
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
     unsigned char byte;
     int zero_terminate = 0;
     int decimal = 0;
+    int end_variable = 0;
     int size_variable = 0;
     
     if (argc <= 1 ||
@@ -76,6 +78,10 @@ int main(int argc, char *argv[])
                     else if (strcmp(argv[arg], "-s") == 0)
                     {
                         size_variable = 1;
+                    }
+                    else if (strcmp(argv[arg], "-e") == 0)
+                    {
+                        end_variable = 1;
                     }
                     else
                     {
@@ -178,6 +184,11 @@ int main(int argc, char *argv[])
     }
     
     fprintf(output_f, " };\n");
+    
+    if (i > 0 && end_variable)
+    {
+        fprintf(output_f, "unsigned char *%s_end = %s + %d;\n", name, name, i - 1);
+    }
     
     if (size_variable)
     {
