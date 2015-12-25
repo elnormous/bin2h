@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     const char* output = 0;
     const char* name = "data";
     
-    unsigned char byte;
+    int byte;
     int zero_terminate = 0;
     int decimal = 0;
     int end_variable = 0;
@@ -142,26 +142,23 @@ int main(int argc, char *argv[])
     
     fprintf(output_f, "unsigned char %s[] = { ", name);
     
-    while (!feof(input_f))
+    while ((byte = getc(input_f)) != EOF)
     {
-        while (fread(&byte, 1, 1, input_f))
+        if (i != 0)
         {
-            if (i != 0)
-            {
-                fprintf(output_f, ", ");
-            }
-            
-            if (decimal)
-            {
-                fprintf(output_f, "%d", byte);
-            }
-            else
-            {
-                fprintf(output_f, "0x%02X", byte);
-            }
-            
-            ++i;
+            fprintf(output_f, ", ");
         }
+        
+        if (decimal)
+        {
+            fprintf(output_f, "%d", byte);
+        }
+        else
+        {
+            fprintf(output_f, "0x%02X", byte);
+        }
+        
+        ++i;
     }
     
     if (zero_terminate)
