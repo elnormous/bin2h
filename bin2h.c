@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
     
     if (size_variable)
     {
-        fprintf(output_f, "%s_size = %d;\n", name, i);
+        fprintf(output_f, "unsigned int %s_size = %d;\n", name, i);
     }
 
     result = 0;
