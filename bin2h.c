@@ -18,6 +18,7 @@ void print_help(const char* name)
     printf("	-o <output>		Specify output file\n");
     printf("	-z				Add zero to the end of the array\n");
     printf("	-d				Print decimal literals instead of binary\n");
+    printf("	-s				Output variable for data size\n");
 }
 
 int main(int argc, char *argv[])
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
     unsigned char byte;
     int zero_terminate = 0;
     int decimal = 0;
+    int size_variable = 0;
     
     if (argc <= 1 ||
         (argc == 2 && strcmp(argv[1], "-h") == 0))
@@ -70,6 +72,10 @@ int main(int argc, char *argv[])
                     else if (strcmp(argv[arg], "-d") == 0)
                     {
                         decimal = 1;
+                    }
+                    else if (strcmp(argv[arg], "-s") == 0)
+                    {
+                        size_variable = 1;
                     }
                     else
                     {
@@ -167,9 +173,16 @@ int main(int argc, char *argv[])
         {
             fprintf(output_f, "0x00");
         }
+        
+        ++i;
     }
     
-    fprintf(output_f, " };");
+    fprintf(output_f, " };\n");
+    
+    if (size_variable)
+    {
+        fprintf(output_f, "%s_size = %d;\n", name, i);
+    }
 
     result = 0;
 exit:
