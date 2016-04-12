@@ -12,7 +12,7 @@ typedef enum
 void print_help(const char* name)
 {
     printf("OVERVIEW: Converts binary file to C header\n\n");
-    printf("USAGE: %s -i <input> -o output -d -z\n\n", name);
+    printf("USAGE: %s -i <input> -o <output> -d -z\n\n", name);
     printf("OPTIONS:\n");
     printf("	-d				Print decimal literals instead of binary\n");
     printf("	-e				Output variable that golds a pointer to the last element of the data\n");
