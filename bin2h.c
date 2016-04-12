@@ -14,8 +14,8 @@ void print_help(const char* name)
     printf("OVERVIEW: Converts binary file to C header\n\n");
     printf("USAGE: %s -i <input> -o <output> -d -z\n\n", name);
     printf("OPTIONS:\n");
-    printf("	-d				Print decimal literals instead of binary\n");
-    printf("	-e				Output variable that golds a pointer to the last element of the data\n");
+    printf("	-d				Print decimal instead of hex literals\n");
+    printf("	-e				Output variable that holds a pointer to the last element of the data\n");
     printf("	-i <input>		Specify input file\n");
     printf("	-o <output>		Specify output file\n");
     printf("	-s				Output variable for data size\n");
