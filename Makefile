@@ -1,12 +1,11 @@
-CC=gcc
-LD=gcc
+CFLAGS=-Wall -std=c89
 OBJ=bin2h.o 
 
 %.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) -c -x c $(CFLAGS) $< -o $@
 
 bin2h: $(OBJ)
-	$(LD) $^ -o $@
+	$(CC) $^ $(LDFLAGS) -o $@
 
 .PHONY: clean
 
