@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
     int result = EXIT_FAILURE;
     int i = 0;
     int arg;
-    FILE* input_f = 0;
-    FILE* output_f = 0;
-    const char* input = 0;
-    const char* output = 0;
+    FILE* input_f = NULL;
+    FILE* output_f = NULL;
+    const char* input = NULL;
+    const char* output = NULL;
     const char* name = "data";
 
     int byte;
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument: %s\n", argv[arg]);
+                printf("Missing argument for -i\n");
                 return EXIT_FAILURE;
             }
             input = argv[arg];
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument: %s\n", argv[arg]);
+                printf("Missing argument for -o\n");
                 return EXIT_FAILURE;
             }
             output = argv[arg];
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument: %s\n", argv[arg]);
+                printf("Missing argument for -n\n");
                 return EXIT_FAILURE;
             }
             name = argv[arg];
