@@ -1,5 +1,7 @@
-bin2h.xcodeproj/project.xcworkspace
+bin2h.xcodeproj/project.xcworkspace/xcuserdata
+bin2h.xcodeproj/project.xcworkspace/xcshareddata
 bin2h.xcodeproj/xcuserdata
+bin2h.xcodeproj/xshareddata
 x64/
 Release/
 Debug/
