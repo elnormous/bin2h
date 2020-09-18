@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument for -i\n");
+                fprintf(stderr, "Missing argument for -i\n");
                 return EXIT_FAILURE;
             }
             input = argv[arg];
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument for -o\n");
+                fprintf(stderr, "Missing argument for -o\n");
                 return EXIT_FAILURE;
             }
             output = argv[arg];
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         {
             if (++arg >= argc)
             {
-                printf("Missing argument for -n\n");
+                fprintf(stderr, "Missing argument for -n\n");
                 return EXIT_FAILURE;
             }
             name = argv[arg];
@@ -79,20 +79,20 @@ int main(int argc, char *argv[])
             end_variable = 1;
         else
         {
-            printf("Invalid argument: %s\n", argv[arg]);
+            fprintf(stderr, "Invalid argument: %s\n", argv[arg]);
             return EXIT_FAILURE;
         }
     }
 
     if (!input)
     {
-        printf("No input file given\n");
+        fprintf(stderr, "No input file given\n");
         goto exit;
     }
 
     if (!output)
     {
-        printf("No output file given\n");
+        fprintf(stderr, "No output file given\n");
         goto exit;
     }
 
@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
 
     if (!input_f)
     {
-        printf("Failed to open input file\n");
+        fprintf(stderr, "Failed to open input file\n");
         goto exit;
     }
 
@@ -108,7 +108,7 @@ int main(int argc, char *argv[])
 
     if (!output_f)
     {
-        printf("Failed to open output file\n");
+        fprintf(stderr, "Failed to open output file\n");
         goto exit;
     }
 
