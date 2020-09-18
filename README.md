@@ -14,4 +14,4 @@ Utility for converting binary files to C headers.
     	-z				Add zero to the end of the array
 
 ## License
-bin2h codebase is licensed under the BSD license. Please refer to the LICENSE file for detailed information.
+bin2h is released to the Public Domain.
