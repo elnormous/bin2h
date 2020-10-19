@@ -5,7 +5,7 @@
 static void print_help(const char* name)
 {
     fprintf(stdout, "OVERVIEW: Converts binary file to C header\n\n");
-    fprintf(stdout, "USAGE: %s -i <input> -n <name> [-o <output>] [-d] [-e] [-s] [-z]\n\n", name);
+    fprintf(stdout, "USAGE: %s -i <input> [-o <output>] [-n <name>] [-d] [-e] [-s] [-z]\n\n", name);
     fprintf(stdout, "OPTIONS:\n"
         "	-d				Print decimal instead of hex literals\n"
         "	-e				Output variable that holds a pointer to the last element of the data\n"
