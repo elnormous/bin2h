@@ -16,10 +16,45 @@ static void print_help(const char* name)
         "	-z				Add a zero to the end of the array\n");
 }
 
+static void generate_output(FILE* input_s,
+                            FILE* output_s,
+                            const char* name,
+                            int zero_terminate,
+                            int decimal,
+                            int end_variable,
+                            int size_variable)
+{
+    int byte;
+    int i = 0;
+
+    fprintf(output_s, "unsigned char %s[] = {", name);
+
+    while ((byte = getc(input_s)) != EOF)
+    {
+        if (i != 0) fprintf(output_s, ", ");
+        fprintf(output_s, decimal ? "%d" : "0x%02X", byte);
+        ++i;
+    }
+
+    if (zero_terminate)
+    {
+        if (i != 0) fprintf(output_s, ", ");
+        fprintf(output_s, decimal ? "0" : "0x00");
+        ++i;
+    }
+
+    fprintf(output_s, "};\n");
+
+    if (i > 0 && end_variable)
+        fprintf(output_s, "unsigned char* %s_end = %s + %d;\n", name, name, i - 1);
+
+    if (size_variable)
+        fprintf(output_s, "unsigned int %s_size = %d;\n", name, i);
+}
+
 int main(int argc, char* argv[])
 {
     int result = EXIT_FAILURE;
-    int i = 0;
     int arg;
     FILE* input_f = NULL;
     FILE* input_s = NULL;
@@ -29,7 +64,6 @@ int main(int argc, char* argv[])
     const char* output = NULL;
     const char* name = "data";
 
-    int byte;
     int zero_terminate = 0;
     int decimal = 0;
     int end_variable = 0;
@@ -114,29 +148,8 @@ int main(int argc, char* argv[])
     else
         output_s = stdout;
 
-    fprintf(output_s, "unsigned char %s[] = {", name);
-
-    while ((byte = getc(input_s)) != EOF)
-    {
-        if (i != 0) fprintf(output_s, ", ");
-        fprintf(output_s, decimal ? "%d" : "0x%02X", byte);
-        ++i;
-    }
-
-    if (zero_terminate)
-    {
-        if (i != 0) fprintf(output_s, ", ");
-        fprintf(output_s, decimal ? "0" : "0x00");
-        ++i;
-    }
-
-    fprintf(output_s, "};\n");
-
-    if (i > 0 && end_variable)
-        fprintf(output_s, "unsigned char* %s_end = %s + %d;\n", name, name, i - 1);
-
-    if (size_variable)
-        fprintf(output_s, "unsigned int %s_size = %d;\n", name, i);
+    generate_output(input_s, output_s, name,
+                    zero_terminate, decimal, end_variable, size_variable);
 
     result = EXIT_SUCCESS;
 exit:
