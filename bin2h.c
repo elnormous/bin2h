@@ -8,12 +8,12 @@ static void print_help(const char* name)
     fprintf(stdout, "USAGE: %s [-i <input>] [-o <output>] [-n <name>] [-d] [-e] [-s] [-z]\n\n", name);
     fprintf(stdout, "OPTIONS:\n"
         "	-d				Print decimal instead of hex literals\n"
-        "	-e				Output variable that holds a pointer to the last element of the data\n"
-        "	-i <input>		Specify input file\n"
-        "	-n <name>		Specify variable name\n"
-        "	-o <output>		Specify output file\n"
-        "	-s				Output variable for data size\n"
-        "	-z				Add zero to the end of the array\n");
+        "	-e				Output a variable that holds a pointer to the last element of the data\n"
+        "	-i <input>		Specify the input file (default: stdin)\n"
+        "	-n <name>		Specify the variable name (default: data)\n"
+        "	-o <output>		Specify the output file (default: stdout)\n"
+        "	-s				Output a variable for data size\n"
+        "	-z				Add a zero to the end of the array\n");
 }
 
 int main(int argc, char* argv[])
