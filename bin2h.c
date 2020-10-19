@@ -5,7 +5,7 @@
 static void print_help(const char* name)
 {
     fprintf(stdout, "OVERVIEW: Converts binary file to C header\n\n");
-    fprintf(stdout, "USAGE: %s -i <input> [-o <output>] [-n <name>] [-d] [-e] [-s] [-z]\n\n", name);
+    fprintf(stdout, "USAGE: %s [-i <input>] [-o <output>] [-n <name>] [-d] [-e] [-s] [-z]\n\n", name);
     fprintf(stdout, "OPTIONS:\n"
         "	-d				Print decimal instead of hex literals\n"
         "	-e				Output variable that holds a pointer to the last element of the data\n"
@@ -22,6 +22,7 @@ int main(int argc, char* argv[])
     int i = 0;
     int arg;
     FILE* input_f = NULL;
+    FILE* input_s = NULL;
     FILE* output_f = NULL;
     FILE* output_s = NULL;
     const char* input = NULL;
@@ -83,19 +84,20 @@ int main(int argc, char* argv[])
         }
     }
 
-    if (!input)
+    if (input)
     {
-        fprintf(stderr, "No input file given\n");
-        goto exit;
-    }
+        input_f = fopen(input, "rb");
 
-    input_f = fopen(input, "rb");
+        if (!input_f)
+        {
+            fprintf(stderr, "Failed to open input file\n");
+            goto exit;
+        }
 
-    if (!input_f)
-    {
-        fprintf(stderr, "Failed to open input file\n");
-        goto exit;
+        input_s = input_f;
     }
+    else
+        input_s = stdin;
 
     if (output)
     {
@@ -114,7 +116,7 @@ int main(int argc, char* argv[])
 
     fprintf(output_s, "unsigned char %s[] = {", name);
 
-    while ((byte = getc(input_f)) != EOF)
+    while ((byte = getc(input_s)) != EOF)
     {
         if (i != 0) fprintf(output_s, ", ");
         fprintf(output_s, decimal ? "%d" : "0x%02X", byte);
