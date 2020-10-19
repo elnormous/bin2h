@@ -3,7 +3,7 @@ Utility for converting binary files to C headers.
 
 ## Usage
 
-    bin2h -i <input> -o <output> -n <name> -d -z
+    bin2h -i <input> -n <name> [-o <output>] [-d] [-e] [-s] [-z]
     OPTIONS:
     	-d				Print decimal instead of hex literals
     	-e				Output variable that holds a pointer to the last element of the data
