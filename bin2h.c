@@ -57,9 +57,7 @@ int main(int argc, char* argv[])
     int result = EXIT_FAILURE;
     int arg;
     FILE* input_f = NULL;
-    FILE* input_s = NULL;
-    FILE* output_f = NULL;
-    FILE* output_s = NULL;
+    FILE* output_f = NULL;;
     const char* input = NULL;
     const char* output = NULL;
     const char* name = "data";
@@ -127,11 +125,7 @@ int main(int argc, char* argv[])
             fprintf(stderr, "Failed to open input file\n");
             goto exit;
         }
-
-        input_s = input_f;
     }
-    else
-        input_s = stdin;
 
     if (output)
     {
@@ -142,14 +136,11 @@ int main(int argc, char* argv[])
             fprintf(stderr, "Failed to open output file\n");
             goto exit;
         }
-
-        output_s = output_f;
     }
-    else
-        output_s = stdout;
 
-    generate_output(input_s, output_s, name,
-                    zero_terminate, decimal, end_variable, size_variable);
+    generate_output(input_f ? input_f : stdin,
+                    output_f ? output_f : stdout,
+                    name, zero_terminate, decimal, end_variable, size_variable);
 
     result = EXIT_SUCCESS;
 exit:
