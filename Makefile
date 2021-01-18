@@ -20,4 +20,4 @@ $(EXECUTABLE): $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f *.o *~ bin2h
+	rm -f $(OBJ) $(EXECUTABLE)
