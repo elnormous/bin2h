@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
     int result = EXIT_FAILURE;
     int arg;
     FILE* input_f = NULL;
-    FILE* output_f = NULL;;
+    FILE* output_f = NULL;
     const char* input = NULL;
     const char* output = NULL;
     const char* name = "data";
