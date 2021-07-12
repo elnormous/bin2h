@@ -1,5 +1,5 @@
 DEBUG=0
-CFLAGS=-Wall -std=c89
+CFLAGS=-Wall -Wextra -Wshadow -std=c89
 OBJ=bin2h.o 
 EXECUTABLE=bin2h
 
@@ -20,4 +20,4 @@ $(EXECUTABLE): $(OBJ)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJ) $(EXECUTABLE)
+	$(RM) -f $(OBJ) $(EXECUTABLE)
