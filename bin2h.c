@@ -46,10 +46,10 @@ static void generate_output(FILE* input_s,
     fprintf(output_s, "};\n");
 
     if (i > 0U && end_variable)
-        fprintf(output_s, "unsigned char* %s_end = %s + %u;\n", name, name, i - 1U);
+        fprintf(output_s, "unsigned char* %s_end = %s + %uU;\n", name, name, i - 1U);
 
     if (size_variable)
-        fprintf(output_s, "unsigned int %s_size = %u;\n", name, i);
+        fprintf(output_s, "unsigned int %s_size = %uU;\n", name, i);
 }
 
 int main(int argc, char* argv[])
