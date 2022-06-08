@@ -25,31 +25,31 @@ static void generate_output(FILE* input_s,
                             int size_variable)
 {
     int byte;
-    int i = 0;
+    unsigned int i = 0U;
 
     fprintf(output_s, "unsigned char %s[] = {", name);
 
     while ((byte = getc(input_s)) != EOF)
     {
-        if (i != 0) fprintf(output_s, ", ");
+        if (i != 0U) fprintf(output_s, ", ");
         fprintf(output_s, decimal ? "%d" : "0x%02X", byte);
         ++i;
     }
 
     if (zero_terminate)
     {
-        if (i != 0) fprintf(output_s, ", ");
+        if (i != 0U) fprintf(output_s, ", ");
         fprintf(output_s, decimal ? "0" : "0x00");
         ++i;
     }
 
     fprintf(output_s, "};\n");
 
-    if (i > 0 && end_variable)
-        fprintf(output_s, "unsigned char* %s_end = %s + %d;\n", name, name, i - 1);
+    if (i > 0U && end_variable)
+        fprintf(output_s, "unsigned char* %s_end = %s + %u;\n", name, name, i - 1U);
 
     if (size_variable)
-        fprintf(output_s, "unsigned int %s_size = %d;\n", name, i);
+        fprintf(output_s, "unsigned int %s_size = %u;\n", name, i);
 }
 
 int main(int argc, char* argv[])
