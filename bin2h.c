@@ -69,7 +69,8 @@ int main(int argc, char* argv[])
 
     for (arg = 1; arg < argc; ++arg)
     {
-        if (strcmp(argv[arg], "-h") == 0)
+        if (strcmp(argv[arg], "-h") == 0 ||
+            strcmp(argv[arg], "--help") == 0)
         {
             print_help(argv[0]);
             return EXIT_SUCCESS;
