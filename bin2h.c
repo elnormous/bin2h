@@ -67,6 +67,12 @@ int main(int argc, char* argv[])
     int end_variable = 0;
     int size_variable = 0;
 
+    if (argc < 2)
+    {
+        print_help(argv[0]);
+        return EXIT_SUCCESS;
+    }
+
     for (arg = 1; arg < argc; ++arg)
     {
         if (strcmp(argv[arg], "-h") == 0 ||
