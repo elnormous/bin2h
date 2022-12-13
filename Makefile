@@ -29,6 +29,7 @@ clean:
 	$(RM) $(OBJ) $(EXECUTABLE)
 
 install:$(EXECUTABLE)
+	mkdir -p $(exec_prefix)/bin
 	$(INSTALL_PROGRAM) $(EXECUTABLE) $(exec_prefix)/bin/$(EXECUTABLE)
 
 uninstall:
