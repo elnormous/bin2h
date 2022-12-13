@@ -1,4 +1,6 @@
 DEBUG=0
+INSTALL=cp
+INSTALL_PROGRAM=$(INSTALL)
 CFLAGS=-Wall -Wextra -Wshadow -std=c89
 OBJ=bin2h.o 
 EXECUTABLE=bin2h
@@ -27,7 +29,7 @@ clean:
 	$(RM) -f $(OBJ) $(EXECUTABLE)
 
 install:
-	cp $(EXECUTABLE) $(exec_prefix)/bin/$(EXECUTABLE)
+	$(INSTALL_PROGRAM) $(EXECUTABLE) $(exec_prefix)/bin/$(EXECUTABLE)
 
 uninstall:
-	$(RM) $(exec_prefix)/bin/$(EXECUTABLE)
+	$(RM) -f $(exec_prefix)/bin/$(EXECUTABLE)
