@@ -26,10 +26,10 @@ $(EXECUTABLE): $(OBJ)
 .PHONY: uninstall
 
 clean:
-	$(RM) -f $(OBJ) $(EXECUTABLE)
+	$(RM) $(OBJ) $(EXECUTABLE)
 
-install:
+install:$(EXECUTABLE)
 	$(INSTALL_PROGRAM) $(EXECUTABLE) $(exec_prefix)/bin/$(EXECUTABLE)
 
 uninstall:
-	$(RM) -f $(exec_prefix)/bin/$(EXECUTABLE)
+	$(RM) $(exec_prefix)/bin/$(EXECUTABLE)
